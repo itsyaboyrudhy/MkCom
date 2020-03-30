@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import LoginScreen from './Pages/LoginScreen/LoginScreen';
 import Dashboard from './Pages/Dashboard/Dashboard';
 
-function App(){
+function Router(){
     return (
         <React.Fragment>
             <Route exact path="/" component={LoginScreen}/>
@@ -13,4 +13,4 @@ function App(){
     )
 }
 
-export default App;
+export default Router;
