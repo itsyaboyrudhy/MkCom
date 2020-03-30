@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './bootstrap.min.css';
-import './demo.css';
-import './light-bootstrap-dashboard.css';
+import './css/bootstrap.min.css';
+import './css/demo.css';
+import './css/light-bootstrap-dashboard.css';
 
 function Dashboard(){
     return (
