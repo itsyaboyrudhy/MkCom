@@ -25,7 +25,7 @@ class LoginScreen extends React.Component {
                     <h3 className="login-heading mb-4">Welkom terug!</h3>
                     <form>
                       <div className="form-label-group">
-                        <input type="tel" id="inputEmail" className="form-control" placeholder="Email address" required autofocus />
+                        <input type="tel" id="inputEmail" value={this.props.Name} className="form-control" placeholder="Email address" required autofocus />
                         <label htmlFor="inputEmail">Gebruikerscode</label>
                       </div>
                       <div className="form-label-group">
@@ -36,7 +36,7 @@ class LoginScreen extends React.Component {
                         <input type="checkbox" className="custom-control-input" id="customCheck1" />
                         <label className="custom-control-label" htmlFor="customCheck1">Wachtwoord onthouden</label>
                       </div>
-                      <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                      <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" href="/Dashboard" type="submit">Sign in</button>
                       <div className="text-center">
                         <a className="small" href="/#">Wachtwoord vergeten?</a></div>
                     </form>
