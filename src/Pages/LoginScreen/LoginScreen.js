@@ -10,6 +10,12 @@ class LoginScreen extends React.Component {
       Gebruikerscode: '',
       Wachtwoord: '',
     };
+    this.ConsoleLog.bind(this);
+  }
+
+  ConsoleLog()
+  {
+    //Add api call --> check login details
   }
 
   render() {
@@ -36,7 +42,7 @@ class LoginScreen extends React.Component {
                         <input type="checkbox" className="custom-control-input" id="customCheck1" />
                         <label className="custom-control-label" htmlFor="customCheck1">Wachtwoord onthouden</label>
                       </div>
-                      <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" href="/Dashboard" type="submit">Sign in</button>
+                      <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" href="/Dashboard" type="submit" onClick={this.ConsoleLog}>Sign in</button>
                       <div className="text-center">
                         <a className="small" href="/#">Wachtwoord vergeten?</a></div>
                     </form>
