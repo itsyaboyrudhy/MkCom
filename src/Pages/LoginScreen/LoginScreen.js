@@ -1,6 +1,6 @@
 import React from 'react';
-import './LoginScreen.css'
-
+import axios from "axios";
+import './LoginScreen.css';
 
 
 class LoginScreen extends React.Component {
@@ -10,12 +10,40 @@ class LoginScreen extends React.Component {
       Gebruikerscode: '',
       Wachtwoord: '',
     };
-    this.ConsoleLog.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  LoginButtonClicked()
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  handleSubmit(event)
   {
-    //Add api call --> check login details
+    const { Gebruikerscode, Wachtwoord } = this.state;
+    axios
+      .post(
+        "localhost:5000/Login",
+        {
+          User: {
+            UsercodeId: Gebruikerscode,
+            Password: Wachtwoord
+          }
+        },
+        { withCredentials: true }
+      )
+        .then(response => {
+          // if conditie met response als het true is dan redirect naar dashboard zie hieronder als voorbeeld:
+          // if (response.data.logged_in) {
+          //   this.props.handleSuccessfulAuth(response.data);
+          //}  
+        })
+        .catch(error => {
+          console.log("login error", error);
+        });
+      event.preventDefault();
   }
 
   render() {
@@ -29,20 +57,20 @@ class LoginScreen extends React.Component {
                 <div className="row">
                   <div className="col-md-9 col-lg-8 mx-auto">
                     <h3 className="login-heading mb-4">Welkom terug!</h3>
-                    <form>
+                    <form onSubmit={this.handleSubmit}>
                       <div className="form-label-group">
-                        <input type="tel" id="inputEmail" value={this.props.Name} className="form-control" placeholder="Email address" required autofocus />
+                        <input type="tel" id="inputEmail" value={this.state.Gebruikerscode} onChange={this.handleChange} className="form-control" placeholder="Email address" required autofocus />
                         <label htmlFor="inputEmail">Gebruikerscode</label>
                       </div>
                       <div className="form-label-group">
-                        <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
+                        <input type="password" id="inputPassword" value={this.state.Wachtwoord} onChange={this.handleChange} className="form-control" placeholder="Password" required />
                         <label htmlFor="inputPassword">Wachtwoord</label>
                       </div>
                       <div className="custom-control custom-checkbox mb-3">
                         <input type="checkbox" className="custom-control-input" id="customCheck1" />
                         <label className="custom-control-label" htmlFor="customCheck1">Wachtwoord onthouden</label>
                       </div>
-                      <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" href="/Dashboard" type="submit" onClick={this.LoginButtonClicked}>Sign in</button>
+                      <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
                       <div className="text-center">
                         <a className="small" href="/#">Wachtwoord vergeten?</a></div>
                     </form>
